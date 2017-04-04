@@ -209,6 +209,8 @@ Array::Array(int size)
 
 Array::Array()
 {
+	size = 0;
+	tab = nullptr;
 }
 
 

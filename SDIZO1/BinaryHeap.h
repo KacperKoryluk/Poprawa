@@ -4,6 +4,7 @@ class BinaryHeap
 private:
 	int size;
 	int *heap;
+	std::string cr, cl, cp; //Zmienne potrzebne do wypisania kopca
 public:
 	int getSize();
 	void setSize(int size);
@@ -11,9 +12,11 @@ public:
 	void pop(int index);
 	int findElement(int index);
 	void print();
+	void printBT(std::string sp, std::string sn, int v);
+	void load(std::string fileName);
 
 
-	BinaryHeap(int size);
+	
 	BinaryHeap();
 	~BinaryHeap();
 };
