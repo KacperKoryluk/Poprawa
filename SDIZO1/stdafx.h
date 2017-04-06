@@ -6,6 +6,9 @@
 #pragma once
 
 #include "targetver.h"
+#include "Array.h"
+#include "List.h"
+#include "BinaryHeap.h"
 
 #include <stdio.h>
 #include <tchar.h>

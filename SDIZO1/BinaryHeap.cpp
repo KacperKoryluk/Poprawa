@@ -65,7 +65,7 @@ void BinaryHeap::push(int value)
 	delete[] tempTab;
 }
 
-void BinaryHeap::pop(int index)
+void BinaryHeap::pop()
 {
 	heap[0] =heap[size - 1];							//Przesuwam ostatni liœæ na pozycjê korzenia
 

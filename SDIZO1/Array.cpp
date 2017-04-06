@@ -181,13 +181,13 @@ void Array::loadFromFile(std::string fileName)	//Przed wywo³aniem tej funkcji us
 {
 
 	std::fstream file;
-	
+	int temp;
 	file.open(fileName, std::ios::in);	
 
 	if (file.is_open())
 	{
 		file >> size;
-		Array::Array(size);
+		tab = new int[size];
 		for (int i = 0; i < size; i++)
 		{
 			file >> tab[i];

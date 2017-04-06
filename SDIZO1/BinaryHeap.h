@@ -1,4 +1,6 @@
 #pragma once
+#include "stdafx.h"
+#include <string>
 class BinaryHeap
 {
 private:
@@ -9,7 +11,7 @@ public:
 	int getSize();
 	void setSize(int size);
 	void push(int value);
-	void pop(int index);
+	void pop();
 	int findElement(int index);
 	void print();
 	void printBT(std::string sp, std::string sn, int v);
