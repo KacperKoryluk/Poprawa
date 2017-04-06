@@ -41,6 +41,7 @@ void List::addFirstElement(int value)	//Je¿eli lista jest pusta elementy zostan¹
 
 void List::addElement(int value, int index)
 {
+	
 	if (head == nullptr)
 	{
 		addFirstElement(value);
@@ -52,7 +53,7 @@ void List::addElement(int value, int index)
 			addBeg(value);
 			return;
 		}
-		else if (index == size)
+		else if (index >= size)		//Jeœli indeks przekracza rozmiar tablicy element zostanie dodany na koñcu
 		{
 			addEnd(value);
 			return;
