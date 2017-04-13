@@ -9,13 +9,15 @@
 #include "Array.h"
 #include "List.h"
 #include "BinaryHeap.h"
-
+#include <iomanip>
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
 #include <random>
 #include <string>
 #include <fstream>
+#include <windows.h>
+#include <conio.h>
 
 
 
