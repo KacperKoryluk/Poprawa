@@ -44,6 +44,7 @@ public:
 	Element getHead();
 	Element* find(int index); //Szuka elementu o danym numerze
 	void load(std::string fileName);
+	int getSize();
 	
 
 	List();

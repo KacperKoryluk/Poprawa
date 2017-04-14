@@ -24,9 +24,9 @@ void Array::addElement(int value, int index)
 
 	temporaryTab[index] = value;
 
-	for (int i = index + 1; i < size; i++)
+	for (int i = index + 1; i < size + 1; i++)
 	{
-		temporaryTab[i] = tab[i];
+		temporaryTab[i] = tab[i-1];
 	}
 
 	size++;
@@ -54,7 +54,7 @@ void Array::removeElement(int index)
 
 	for (int i = index + 1; i < size; i++)
 	{
-		temporaryTab[i] = tab[i];
+		temporaryTab[i - 1] = tab[i];
 	}
 
 	size--;
@@ -80,9 +80,9 @@ void Array::removeFirst()
 {
 	int *temporaryTab = new int[size - 1];
 
-	for (int i = 1; i < size - 1; i++)	//Przepisujê od 1 elementu w górê, zerowy pomijam
+	for (int i = 1; i < size; i++)	//Przepisujê od 1 elementu w górê, zerowy pomijam
 	{
-		temporaryTab[i] = tab[i];
+		temporaryTab[i - 1] = tab[i];
 	}
 
 	size--;
@@ -123,9 +123,9 @@ void Array::addFirst(int value)
 {
 	int *temporaryTab = new int[size + 1];
 
-	temporaryTab[size] = value;
+	temporaryTab[0] = value;
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size + 1; i++)
 	{
 		temporaryTab[i+1] = tab[i];
 	}

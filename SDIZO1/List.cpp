@@ -188,9 +188,9 @@ void List::removeBeg()
 	{
 		if (size == 1)
 		{
-			delete head;
-			delete tail;
-			size--;
+			head = nullptr;
+			tail = nullptr;
+			size = 0;
 		}
 		else
 		{
@@ -213,9 +213,9 @@ void List::removeEnd()
 	{
 		if (size == 1)
 		{
-			delete head;
-			delete tail;
-			size--;
+			head = nullptr;
+			tail = nullptr;
+			size = 0;
 		}
 		else
 		{
@@ -260,6 +260,11 @@ void List::load(std::string fileName)
 	}
 	else
 		std::cerr << "Nie udalo sie otworzyc pliku!" << std::endl;
+}
+
+int List::getSize()
+{
+	return this->size;
 }
 
 
