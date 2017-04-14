@@ -1,4 +1,11 @@
 // SDIZO1.cpp : Defines the entry point for the console application.
+
+/*
+Program testuj¹cy struktuy Danych
+Autor: Kacper Koryluk
+
+
+*/
 //
 
 #include "stdafx.h"
