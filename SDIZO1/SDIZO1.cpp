@@ -347,8 +347,344 @@ void menu()	//Menu do prezentacji programu
 }
 
 
+
+int getRandom(int min, int max)		//(Mersenne Twister)
+{
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> dist(min, max);
+
+	return dist(gen);
+}
+
 void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 {
+	cout << "Menu do testów:" << endl
+		<< "Funkcje:" << endl
+		<< "1 - Dodaje do listy" << endl
+		<< "2 - Dodaje do kopca" << endl
+		<< "3 - Dodaje do tablicy" << endl
+		<< "4 - Usuwa z listy" << endl
+		<< "5 - Usuwa z kopca" << endl
+		<< "6 - Usuwa z tablicy" << endl
+		<< "7 - Wyszukuje w liscie" << endl
+		<< "8 - wyszukuje w kopcu" << endl
+		<< "9 - Wyszukuje w tablicy" << endl
+		<< "c - Czysci ekran." << endl;
+
+	int amount;
+	int range;
+	int place;
+	int counter = 0;
+
+	Array *testMenuArray = new Array();
+	BinaryHeap *testMenuBinaryHeap = new BinaryHeap();
+	List *testMenuList = new List();
+
+	do {
+		decision = _getch();
+		switch (decision)
+		{
+		case 'l':
+			testMenuList->printList();
+			break;
+		case 'k':
+			testMenuBinaryHeap->print();
+			break;
+		case 't':
+			testMenuArray->print();
+			break;
+		case '1':
+			cout << "Ilosc liczb: " << endl;
+			cin >> amount;
+			cout << "Zakres: " << endl;
+			cin >> range;
+			cout << "Miejsce:" << endl
+				<< "1 - Poczatek \n 2 - Srodek \n 3- Koniec " << endl;
+			cin >> place;
+
+
+			if (place == 1)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					testMenuList->addBeg(getRandom(-range, range));
+				}
+			}
+			else if (place == 2)
+			{
+				
+
+
+					for (int i = 0; i < amount; i++)
+					{
+						if (testMenuList->getSize() > 1)
+						{
+						testMenuList->addElement(getRandom(-range, range), getRandom(1, testMenuList->getSize() - 1));
+						}
+						else
+						{
+							testMenuList->addBeg(getRandom(-range, range));
+						}
+					}
+				
+			}
+
+
+			else if (place == 3)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					testMenuList->addEnd(getRandom(-range, range));
+				}
+			}
+
+			
+			break;
+		case '2':
+			cout << "Ilosc liczb: " << endl;
+			cin >> amount;
+			cout << "Zakres: " << endl;
+			cin >> range;
+
+			
+			for (int i = 0; i < amount; i++)
+			{
+				testMenuBinaryHeap->push(getRandom(-range, range));
+			}
+
+			
+			break;
+		case '3':
+			cout << "Ilosc liczb: " << endl;
+			cin >> amount;
+			cout << "Zakres: " << endl;
+			cin >> range;
+			cout << "Miejsce:" << endl
+				<< "1 - Poczatek \n 2 - Srodek \n 3- Koniec " << endl;
+			cin >> place;
+
+
+			if (place == 1)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					testMenuArray->addFirst(getRandom(-range, range));
+				}
+			}
+			else if (place == 2)
+			{
+				
+					for (int i = 0; i < amount; i++)
+					{
+						if (testMenuArray->getSize() > 1)
+						{
+							testMenuArray->addElement(getRandom(-range, range), getRandom(1, testMenuArray->getSize() - 1));
+						}
+						else
+						{
+							testMenuArray->addLast(getRandom(-range, range));
+						}
+					}
+				
+			}
+			else if (place == 3)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					testMenuArray->addLast(getRandom(-range, range));
+				}
+			}
+
+
+			break;
+		case '4':
+			cout << "Ilosc liczb: " << endl;
+			cin >> amount;
+			cout << "Miejsce:" << endl
+				<< "1 - Poczatek \n 2 - Srodek \n 3- Koniec " << endl;
+			cin >> place;
+
+
+			if (place == 1)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					if (testMenuList->getSize() > 0)
+					{
+						testMenuList->removeBeg();
+					}
+				}
+			}
+			else if (place == 2)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					if (testMenuList->getSize() > 1)
+					{
+						testMenuList->removeElement(getRandom(1, testMenuList->getSize() - 1));
+					}
+					else if (testMenuList->getSize() == 1)
+					{
+						testMenuList->removeBeg();
+					}
+				}
+			}
+			else if (place == 3)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					testMenuList->removeEnd();
+				}
+			}
+
+
+			break;
+		case '5':
+			cout << "Ilosc liczb: " << endl;
+			cin >> amount;
+
+
+			for (int i = 0; i < amount; i++)
+			{
+				if (testMenuBinaryHeap->getSize() > 0)
+				{
+					testMenuBinaryHeap->pop();
+				}
+			}
+
+
+			break;
+		case '6':
+
+			cout << "Ilosc liczb: " << endl;
+			cin >> amount;
+			cout << "Miejsce:" << endl
+				<< "1 - Poczatek \n 2 - Srodek \n 3- Koniec " << endl;
+			cin >> place;
+
+
+			if (place == 1)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					if (testMenuArray->getSize() > 0)
+					{
+						testMenuArray->removeFirst();
+					}
+				}
+			}
+			else if (place == 2)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					if (testMenuArray->getSize() > 1)
+					{
+						testMenuArray->removeElement(getRandom(1, testMenuArray->getSize() - 1));
+					}
+					else
+					{
+						testMenuArray->removeLast();
+					}
+				}
+			}
+			else if (place == 3)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					if (testMenuArray->getSize() > 0)
+					{
+						testMenuArray->removeLast();
+					}
+					
+				}
+			}
+
+
+			break;
+		case '7':
+			 counter = 0;
+			cout << "Ilosc: " << endl;
+			cin >> amount;
+
+
+			for (int i = 0; i < amount; i++)
+			{
+				cout << " : " << testMenuList->find(getRandom(0, testMenuList->getSize() - 1))->value << " : ";
+				if (counter == 10)
+				{
+					cout << endl;
+					counter = 0;
+				}
+				counter++;
+			}
+
+			
+			break;
+		case '8':
+			counter = 0;
+			cout << "Ilosc: " << endl;
+			cin >> amount;
+
+
+			for (int i = 0; i < amount; i++)
+			{
+				cout << " : " << testMenuBinaryHeap->findElement(getRandom(0, testMenuBinaryHeap->getSize() - 1)) << " : ";
+				if (counter == 10)
+				{
+					cout << endl;
+					counter = 0;
+				}
+				counter++;
+			}
+
+
+			break;
+		case '9':
+			 counter = 0;
+			cout << "Ilosc: " << endl;
+			cin >> amount;
+
+
+			for (int i = 0; i < amount; i++)
+			{
+				cout << " : " << testMenuArray->findElement(getRandom(0, testMenuArray->getSize() - 1)) << " : ";
+				if (counter == 10)
+				{
+					cout << endl;
+					counter = 0;
+				}
+				counter++;
+			}
+
+
+			break;
+		case 'c':
+			system("cls");
+			cout << "Menu do testów:" << endl
+				<< "Funkcje:" << endl
+				<< "1 - Dodaje do listy" << endl
+				<< "2 - Dodaje do kopca" << endl
+				<< "3 - Dodaje do tablicy" << endl
+				<< "4 - Usuwa z listy" << endl
+				<< "5 - Usuwa z kopca" << endl
+				<< "6 - Usuwa z tablicy" << endl
+				<< "7 - Wyszukuje w liscie" << endl
+				<< "8 - wyszukuje w kopcu" << endl
+				<< "8 - Wyszukuje w tablicy" << endl
+				<< "c - Czysci ekran." << endl;
+			break;
+
+
+
+		}
+
+	} while (decision != 27);
+
+
+
+
+
 
 }
 
@@ -364,7 +700,8 @@ Zrobiæ menu do testów.
 */
 
 
-menu();
+//menu();
+	testMenu();
 
 
 
