@@ -457,7 +457,8 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			} while (place != 1 && place != 2 && place != 3);
 
 
-
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
 
 			if (place == 1)
 			{
@@ -494,7 +495,8 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 				}
 			}
 
-			
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed)/frequency << endl << endl;
 			break;
 		case '2':
 			cout << "Ilosc liczb: " << endl;
@@ -528,15 +530,19 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 					cout << "Podaj liczbe dodatnia!" << endl;
 				}
 			} while (range < 0);
-			
 
+			
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
 			
 			for (int i = 0; i < amount; i++)
 			{
 				testMenuBinaryHeap->push(getRandom(-range, range));
 			}
 
-			
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed) / frequency << endl << endl;
+
 			break;
 		case '3':
 			cout << "Ilosc liczb: " << endl;
@@ -582,6 +588,9 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			} while (place != 1 && place != 2 && place != 3);
 
 
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
+
 			if (place == 1)
 			{
 				for (int i = 0; i < amount; i++)
@@ -614,6 +623,10 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			}
 
 
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed) / frequency << endl << endl;
+			
+
 			break;
 		case '4':
 			cout << "Ilosc liczb: " << endl;
@@ -643,6 +656,8 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			} while (place != 1 && place != 2 && place != 3);
 
 
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
 
 			if (place == 1)
 			{
@@ -676,6 +691,8 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 				}
 			}
 
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed) / frequency << endl << endl;
 
 			break;
 		case '5':
@@ -696,6 +713,8 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			} while (amount < 0);
 			
 
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
 
 			for (int i = 0; i < amount; i++)
 			{
@@ -705,6 +724,8 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 				}
 			}
 
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed) / frequency << endl << endl;
 
 			break;
 		case '6':
@@ -735,6 +756,9 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 				}
 			} while (place != 1 && place != 2 && place != 3);
 
+
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
 
 			if (place == 1)
 			{
@@ -772,6 +796,8 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 				}
 			}
 
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed) / frequency << endl << endl;
 
 			break;
 		case '7':
@@ -792,6 +818,10 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 				}
 			} while (amount < 0);
 
+
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
+
 			if (testMenuList->getSize() > 0)
 			{
 				for (int i = 0; i < amount; i++)
@@ -809,6 +839,9 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			{
 				cout << "Brak elementow!" << endl;
 			}
+
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed) / frequency << endl << endl;
 			
 			break;
 		case '8':
@@ -830,6 +863,9 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			} while (amount < 0);
 
 
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
+
 			if (testMenuBinaryHeap->getSize() > 0)
 			{
 				for (int i = 0; i < amount; i++)
@@ -847,6 +883,9 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			{
 				cout << "Brak elementow!" << endl;
 			}
+
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed) / frequency << endl << endl;
 
 			break;
 		case '9':
@@ -867,6 +906,11 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 				}
 			} while (amount < 0);
 
+
+
+			QueryPerformanceFrequency((LARGE_INTEGER *)&frequency);
+			start = read_QPC();
+
 			if (testMenuArray->getSize() > 0)
 			{
 				for (int i = 0; i < amount; i++)
@@ -885,10 +929,15 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 				cout << "Brak elementow!" << endl;
 			}
 
+
+			elapsed = read_QPC() - start;
+			cout << "Czas operacji[us] = " << setprecision(5) << (1000000.0 * elapsed) / frequency << endl << endl;
+
+
 			break;
 		case 'c':
 			system("cls");
-			cout << "Menu do testów:" << endl
+			cout << "Menu do testow:" << endl
 				<< "Funkcje:" << endl
 				<< "l - wyswietla liste" << endl
 				<< "k - wyswietla kopiec" << endl

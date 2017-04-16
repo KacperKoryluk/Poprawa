@@ -124,11 +124,12 @@ void Array::addFirst(int value)
 	int *temporaryTab = new int[size + 1];
 
 	temporaryTab[0] = value;
-
-	for (int i = 0; i < size + 1; i++)
-	{
-		temporaryTab[i+1] = tab[i];
-	}
+	
+		for (int i = 1; i < size + 1; i++)
+		{
+			temporaryTab[i] = tab[i - 1];
+		}
+	
 
 
 	size++;
