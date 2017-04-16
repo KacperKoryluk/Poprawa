@@ -21,6 +21,16 @@ List *testList = new List();
 
 
 
+long long int frequency, start, elapsed;	//Pomiar czasu
+long long int read_QPC()
+{
+	LARGE_INTEGER count;
+	QueryPerformanceCounter(&count);
+	return((long long int)count.QuadPart);
+}
+
+
+
 void arrayMenu()	//Menu tablicy
 {
 	cout << "Menu tablicy: " << endl
@@ -322,14 +332,20 @@ void menu()	//Menu do prezentacji programu
 		switch (decision)
 		{
 		case 'l':
+			delete testList;
+			testList = new List();
 			testList->load("test.txt");
 			listMenu();
 			break;
 		case 'k':
+			delete testBinaryHeap;
+			testBinaryHeap = new BinaryHeap();
 			testBinaryHeap->load("test.txt");
 			heapMenu();
 			break;
 		case 't':
+			delete testArray;
+			testArray = new Array();
 			testArray->loadFromFile("test.txt");
 			arrayMenu();
 			break;
@@ -361,6 +377,9 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 {
 	cout << "Menu do testów:" << endl
 		<< "Funkcje:" << endl
+		<< "l - wyswietla liste" << endl
+		<< "k - wyswietla kopiec" << endl
+		<< "t - wyswietla tablice" << endl
 		<< "1 - Dodaje do listy" << endl
 		<< "2 - Dodaje do kopca" << endl
 		<< "3 - Dodaje do tablicy" << endl
@@ -396,12 +415,48 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			break;
 		case '1':
 			cout << "Ilosc liczb: " << endl;
-			cin >> amount;
+			do {
+				cin >> amount;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
+				}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
+			
 			cout << "Zakres: " << endl;
-			cin >> range;
+			do {
+				cin >> range;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> range;
+				}
+				if (range < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (range < 0);
+		
 			cout << "Miejsce:" << endl
 				<< "1 - Poczatek \n 2 - Srodek \n 3- Koniec " << endl;
-			cin >> place;
+			do {
+				cin >> place;
+				if (place != 1 && place != 2 && place != 3)
+				{
+					cout << "Podaj liczbe 1, 2 lub 3" << endl;
+				}
+			} while (place != 1 && place != 2 && place != 3);
+
+
 
 
 			if (place == 1)
@@ -443,9 +498,37 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			break;
 		case '2':
 			cout << "Ilosc liczb: " << endl;
-			cin >> amount;
+			do {
+				cin >> amount;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
+				}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
+		
 			cout << "Zakres: " << endl;
-			cin >> range;
+			do {
+				cin >> range;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> range;
+				}
+				if (range < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (range < 0);
+			
 
 			
 			for (int i = 0; i < amount; i++)
@@ -457,12 +540,46 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			break;
 		case '3':
 			cout << "Ilosc liczb: " << endl;
-			cin >> amount;
+			do {
+				cin >> amount;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
+				}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
+
 			cout << "Zakres: " << endl;
-			cin >> range;
+			do {
+				cin >> range;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> range;
+				}
+				if (range < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (range < 0);
+
 			cout << "Miejsce:" << endl
 				<< "1 - Poczatek \n 2 - Srodek \n 3- Koniec " << endl;
-			cin >> place;
+			do {
+				cin >> place;
+				if (place != 1 && place != 2 && place != 3)
+				{
+					cout << "Podaj liczbe 1, 2 lub 3" << endl;
+				}
+			} while (place != 1 && place != 2 && place != 3);
 
 
 			if (place == 1)
@@ -500,10 +617,31 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			break;
 		case '4':
 			cout << "Ilosc liczb: " << endl;
-			cin >> amount;
+			do {
+				cin >> amount;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
+				}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
+		
 			cout << "Miejsce:" << endl
 				<< "1 - Poczatek \n 2 - Srodek \n 3- Koniec " << endl;
-			cin >> place;
+			do {
+				cin >> place;
+				if (place != 1 && place != 2 && place != 3)
+				{
+					cout << "Podaj liczbe 1, 2 lub 3" << endl;
+				}
+			} while (place != 1 && place != 2 && place != 3);
+
 
 
 			if (place == 1)
@@ -542,7 +680,21 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 			break;
 		case '5':
 			cout << "Ilosc liczb: " << endl;
-			cin >> amount;
+			do {
+				cin >> amount;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
+				}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
+			
 
 
 			for (int i = 0; i < amount; i++)
@@ -558,10 +710,30 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 		case '6':
 
 			cout << "Ilosc liczb: " << endl;
-			cin >> amount;
+			do {
+				cin >> amount;
+				while (cin.fail())
+				{
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
+				}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
+
 			cout << "Miejsce:" << endl
 				<< "1 - Poczatek \n 2 - Srodek \n 3- Koniec " << endl;
-			cin >> place;
+			do {
+				cin >> place;
+				if (place != 1 && place != 2 && place != 3)
+				{
+					cout << "Podaj liczbe 1, 2 lub 3" << endl;
+				}
+			} while (place != 1 && place != 2 && place != 3);
 
 
 			if (place == 1)
@@ -605,64 +777,122 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 		case '7':
 			 counter = 0;
 			cout << "Ilosc: " << endl;
-			cin >> amount;
-
-
-			for (int i = 0; i < amount; i++)
-			{
-				cout << " : " << testMenuList->find(getRandom(0, testMenuList->getSize() - 1))->value << " : ";
-				if (counter == 10)
+			do {
+				cin >> amount;
+				while (cin.fail())
 				{
-					cout << endl;
-					counter = 0;
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
 				}
-				counter++;
-			}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
 
+			if (testMenuList->getSize() > 0)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					cout << " : " << testMenuList->find(getRandom(0, testMenuList->getSize() - 1))->value << " : ";
+					if (counter == 10)
+					{
+						cout << endl;
+						counter = 0;
+					}
+					counter++;
+				}
+			}
+			else
+			{
+				cout << "Brak elementow!" << endl;
+			}
 			
 			break;
 		case '8':
 			counter = 0;
 			cout << "Ilosc: " << endl;
-			cin >> amount;
-
-
-			for (int i = 0; i < amount; i++)
-			{
-				cout << " : " << testMenuBinaryHeap->findElement(getRandom(0, testMenuBinaryHeap->getSize() - 1)) << " : ";
-				if (counter == 10)
+			do {
+				cin >> amount;
+				while (cin.fail())
 				{
-					cout << endl;
-					counter = 0;
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
 				}
-				counter++;
-			}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
 
+
+			if (testMenuBinaryHeap->getSize() > 0)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					cout << " : " << testMenuBinaryHeap->findElement(getRandom(0, testMenuBinaryHeap->getSize() - 1)) << " : ";
+					if (counter == 10)
+					{
+						cout << endl;
+						counter = 0;
+					}
+					counter++;
+				}
+			}
+			else
+			{
+				cout << "Brak elementow!" << endl;
+			}
 
 			break;
 		case '9':
 			 counter = 0;
 			cout << "Ilosc: " << endl;
-			cin >> amount;
-
-
-			for (int i = 0; i < amount; i++)
-			{
-				cout << " : " << testMenuArray->findElement(getRandom(0, testMenuArray->getSize() - 1)) << " : ";
-				if (counter == 10)
+			do {
+				cin >> amount;
+				while (cin.fail())
 				{
-					cout << endl;
-					counter = 0;
+					cout << "Blad, podaj liczbe calkowita" << endl;
+					cin.clear();
+					cin.ignore();
+					cin >> amount;
 				}
-				counter++;
-			}
+				if (amount < 0)
+				{
+					cout << "Podaj liczbe dodatnia!" << endl;
+				}
+			} while (amount < 0);
 
+			if (testMenuArray->getSize() > 0)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					cout << " : " << testMenuArray->findElement(getRandom(0, testMenuArray->getSize() - 1)) << " : ";
+					if (counter == 10)
+					{
+						cout << endl;
+						counter = 0;
+					}
+					counter++;
+				}
+			}
+			else
+			{
+				cout << "Brak elementow!" << endl;
+			}
 
 			break;
 		case 'c':
 			system("cls");
 			cout << "Menu do testów:" << endl
 				<< "Funkcje:" << endl
+				<< "l - wyswietla liste" << endl
+				<< "k - wyswietla kopiec" << endl
+				<< "t - wyswietla tablice" << endl
 				<< "1 - Dodaje do listy" << endl
 				<< "2 - Dodaje do kopca" << endl
 				<< "3 - Dodaje do tablicy" << endl
@@ -691,17 +921,35 @@ void testMenu() //Menu do gromadzenia wyników pomiaru czasu
 int main()
 {
 
+	cout << "Program testujacy struktury danych. " << endl
+		<< "1 - Menu do przeprowadzania testow dla duzej ilosci danych" << endl
+		<< "dowolny klawisz - menu do testowania poprawnosci struktur" << endl
+		<< "c - czysci ekran" << endl
+		<< "ESC - wyjscie" << endl;
 
+	do {
 
+		decision = _getch();
 
-/*
-Zrobiæ menu do testów.
-
-*/
-
-
-//menu();
-	testMenu();
+		switch (decision)
+		{
+		case '1':
+			testMenu();
+			break;
+		case 'c':
+			system("cls");
+			cout << "Program testujacy struktury danych. " << endl
+				<< "1 - Menu do przeprowadzania testow dla duzej ilosci danych" << endl
+				<< "dowolny klawisz - menu do testowania poprawnosci struktur" << endl
+				<< "ESC - wyjscie" << endl;
+			break;
+		case 27:
+			break;
+		default:
+			menu();
+			break;
+		}
+	} while (decision != 27);
 
 
 
